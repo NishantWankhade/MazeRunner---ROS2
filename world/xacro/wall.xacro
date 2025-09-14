@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<xacro:sdf version="1.10" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Macro for a wall -->
+  <xacro:macro name="wall" params="name pose size color">
+    <model name="${name}">
+      <static>true</static>
+      <pose>${pose}</pose>
+      <link name="link">
+
+        <!-- Visual -->
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>${size}</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>${color}</ambient>
+            <diffuse>${color}</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+
+        <!-- Collision -->
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>${size}</size>
+            </box>
+          </geometry>
+        </collision>
+
+      </link>
+    </model>
+  </xacro:macro>
+
+</xacro:sdf>

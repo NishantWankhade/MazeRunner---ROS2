@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<xacro:sdf version="1.10" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- ========== Properties (adjust once, apply everywhere) ========== -->
+  <xacro:property name="pin_radius" value="0.3"/>
+  <xacro:property name="pin_head_height" value="0.4"/>
+  <xacro:property name="cone_file" value="stl/cone.stl"/>
+
+  <!-- ========== Macro for a location pin ========== -->
+  <xacro:macro name="location_pin" params="name pose color">
+    <model name="${name}">
+      <static>true</static>
+      <pose>${pose}</pose>
+      <link name="link">
+
+        <!-- Head (sphere) -->
+        <visual name="pin_head">
+          <pose>0 0 ${pin_head_height} 0 0 0</pose>
+          <geometry>
+            <sphere>
+              <radius>${pin_radius}</radius>
+            </sphere>
+          </geometry>
+          <material>
+            <ambient>${color}</ambient>
+            <diffuse>${color}</diffuse>
+          </material>
+        </visual>
+
+        <!-- Tip (cone mesh) -->
+        <visual name="pin_tip">
+          <pose>0 0 -0.2 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>${cone_file}</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <ambient>${color}</ambient>
+            <diffuse>${color}</diffuse>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+  </xacro:macro>
+
+  <!-- ========== Instances ========== -->
+  <!-- <xacro:location_pin name="Start" pose="-4 -4 2 0 0 0" color="0 0 1 1"/>
+  <xacro:location_pin name="Goal"  pose="-4  4 2 0 0 0" color="0 1 0 1"/> -->
+
+</xacro:sdf>
