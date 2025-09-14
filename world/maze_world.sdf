@@ -58,13 +58,13 @@
     <!-- === Maze walls === -->
     <model name="wall_bottom">
       <static>true</static>
-      <pose>0 -5 0 0 0 1.5708</pose>
+      <pose>0 -7 0 0 0 1.5708</pose>
       <link name="link">
         <!-- Visual -->
         <visual name="visual">
           <geometry>
             <box>
-              <size>0.5 10.0 4.0</size>
+              <size>0.5 14.0 4.0</size>
             </box>
           </geometry>
           <material>
@@ -77,33 +77,96 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>0.5 10.0 4.0</size>
+              <size>0.5 14.0 4.0</size>
             </box>
           </geometry>
         </collision>
       </link>
     </model>
-    <!-- Origin Marker -->
-    <model name="Origin">
+    <model name="wall_left">
       <static>true</static>
-      <pose>0 0 0 0 0 0</pose>
+      <pose>-7 0 0 0 0 0</pose>
       <link name="link">
-        <visual name="sphere">
+        <!-- Visual -->
+        <visual name="visual">
           <geometry>
-            <sphere>
-              <radius>0.3</radius>
-            </sphere>
+            <box>
+              <size>0.5 14.5 4.0</size>
+            </box>
           </geometry>
           <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
           </material>
         </visual>
+        <!-- Collision -->
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 14.5 4.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_right">
+      <static>true</static>
+      <pose>7 0 0 0 0 0</pose>
+      <link name="link">
+        <!-- Visual -->
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 14.5 4.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <!-- Collision -->
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 14.5 4.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_top">
+      <static>true</static>
+      <pose>0 7 0 0 0 1.5708</pose>
+      <link name="link">
+        <!-- Visual -->
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 14.0 4.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <!-- Collision -->
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 14.0 4.0</size>
+            </box>
+          </geometry>
+        </collision>
       </link>
     </model>
     <model name="Start">
       <static>true</static>
-      <pose>-4 -4 2 0 0 0</pose>
+      <pose>-5 -5 2 0 0 0</pose>
       <link name="link">
         <!-- Head (sphere) -->
         <visual name="pin_head">
@@ -135,7 +198,7 @@
     </model>
     <model name="Goal">
       <static>true</static>
-      <pose>-4  4 2 0 0 0</pose>
+      <pose>-5 5 2 0 0 0</pose>
       <link name="link">
         <!-- Head (sphere) -->
         <visual name="pin_head">
@@ -167,7 +230,7 @@
     </model>
     <!-- Vehicle Model -->
     <model canonical_link="chassis" name="vehicle_blue">
-      <pose relative_to="world">-4 -4 0 0 0 0</pose>
+      <pose relative_to="world">-5 -5 0 0 0 0</pose>
       <link name="chassis">
         <pose relative_to="__model__">0.5 0 0.4 0 0 0</pose>
         <inertial>

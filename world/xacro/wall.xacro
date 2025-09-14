@@ -1,8 +1,13 @@
 <?xml version="1.0"?>
 <xacro:sdf version="1.10" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <!-- Macro for a wall -->
-  <xacro:macro name="wall" params="name pose size color">
+  <!-- ===== Global wall properties ===== -->
+  <xacro:property name="wall_height" value="4.0"/>
+  <xacro:property name="wall_thickness" value="0.5"/>
+  <xacro:property name="wall_color" value="0 0 1 1"/>
+
+  <!-- ===== Macro for a wall ===== -->
+  <xacro:macro name="wall" params="name pose length">
     <model name="${name}">
       <static>true</static>
       <pose>${pose}</pose>
@@ -12,12 +17,12 @@
         <visual name="visual">
           <geometry>
             <box>
-              <size>${size}</size>
+              <size>${wall_thickness} ${length} ${wall_height}</size>
             </box>
           </geometry>
           <material>
-            <ambient>${color}</ambient>
-            <diffuse>${color}</diffuse>
+            <ambient>${wall_color}</ambient>
+            <diffuse>${wall_color}</diffuse>
             <specular>0.2 0.2 0.2 1</specular>
           </material>
         </visual>
@@ -26,7 +31,7 @@
         <collision name="collision">
           <geometry>
             <box>
-              <size>${size}</size>
+              <size>${wall_thickness} ${length} ${wall_height}</size>
             </box>
           </geometry>
         </collision>

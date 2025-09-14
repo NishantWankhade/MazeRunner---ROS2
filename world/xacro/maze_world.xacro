@@ -61,40 +61,31 @@
 
     <!-- Outer boundary -->
     <xacro:wall name="wall_bottom"
-      pose="0 -5 0 0 0 1.5708"
-      size="0.5 10.0 4.0"
-      color="0 0 1 1" />
+      pose="0 -7 0 0 0 1.5708"
+      length="14.0" />
 
+    <xacro:wall name="wall_left"
+      pose="-7 0 0 0 0 0"
+      length="14.5" />
 
-    <!-- Origin Marker -->
+    <xacro:wall name="wall_right"
+      pose="7 0 0 0 0 0"
+      length="14.5" />
 
-    <model name="Origin">
-      <static>true</static>
-      <pose>0 0 0 0 0 0</pose>
-      <link name="link">
-        <visual name="sphere">
-          <geometry>
-            <sphere>
-              <radius>0.3</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
+    <xacro:wall name="wall_top"
+      pose="0 7 0 0 0 1.5708"
+      length="14.0" />
+
 
 
     <!-- === Start & Goal markers === -->
-    <xacro:location_pin name="Start" pose="-4 -4 2 0 0 0" color="0 0 1 1" />
-    <xacro:location_pin name="Goal" pose="-4  4 2 0 0 0" color="0 1 0 1" />
+    <xacro:location_pin name="Start" pose="-5 -5 2 0 0 0" color="0 0 1 1" />
+    <xacro:location_pin name="Goal" pose="-5 5 2 0 0 0" color="0 1 0 1" />
 
 
     <!-- Vehicle Model -->
     <model name='vehicle_blue' canonical_link='chassis'>
-      <pose relative_to='world'>-4 -4 0 0 0 0</pose>
+      <pose relative_to='world'>-5 -5 0 0 0 0</pose>
       <link name='chassis'>
         <pose relative_to='__model__'>0.5 0 0.4 0 0 0</pose>
         <inertial> <!--inertial
