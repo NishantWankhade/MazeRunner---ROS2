@@ -1,4 +1,6 @@
 from setuptools import find_packages, setup
+from glob import glob
+import os
 
 package_name = 'minor'
 
@@ -10,6 +12,14 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+
+        # Adding files to Launch World
+        ('share/' + package_name + '/world/xacro', glob('world/xacro/*.xacro')),
+        ('share/' + package_name + '/world', glob('world/*.sdf')),
+        ('share/' + package_name + '/world/stl', glob('world/stl/*.stl')),
+
+        # Adding Launch file as an executable 
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*')))
     ],
     install_requires=['setuptools'],
     zip_safe=True,

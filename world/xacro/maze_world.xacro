@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
-<sdf version="1.10">
+<xacro:sdf version="1.10"
+  xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find minor)/world/xacro/start_goal.xacro" />
+  <xacro:include filename="$(find minor)/world/xacro/wall.xacro" />
+
   <world name="maze_world">
 
     <!-- Physics & plugins -->
@@ -55,207 +60,44 @@
     <!-- === Maze walls === -->
 
     <!-- Outer boundary -->
-    <model name="wall_bottom">
-      <static>true</static>
-      <pose>0 -5 0 0 0 1.5708</pose>
-      <link name="link">
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.5 10.0 4.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0 0 1 1</ambient>
-          </material>
-        </visual>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.5 10.0 4.0</size>
-            </box>
-          </geometry>
-        </collision>
-      </link>
-    </model>
+    <xacro:wall name="wall_bottom"
+      pose="0.75 -7 0 0 0 1.5708"
+      length="15.5" />
 
-    <model name="wall_top">
-      <static>true</static>
-      <pose>0 5 0 0 0 1.5708</pose>
-      <link name="link">
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.5 10.0 4.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0 0 1 1</ambient>
-          </material>
-        </visual>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.5 10.0 4.0</size>
-            </box>
-          </geometry>
-        </collision>
-      </link>
-    </model>
+    <xacro:wall name="wall_left"
+      pose="-7 -1.125 0 0 0 0"
+      length="12.25" />
 
-    <model name="wall_left">
-      <static>true</static>
-      <pose>-5 0 0 0 0 0</pose>
-      <link name="link">
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.5 10.0 4.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0 0 1 1</ambient>
-          </material>
-        </visual>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.5 10.0 4.0</size>
-            </box>
-          </geometry>
-        </collision>
-      </link>
-    </model>
+    <xacro:wall name="wall_right"
+      pose="8.5 -1.125 0 0 0 0"
+      length="12.25" />
 
-    <model name="wall_right">
-      <static>true</static>
-      <pose>5 0 0 0 0 0</pose>
-      <link name="link">
-        <visual name="visual">
-          <geometry>
-            <box>
-              <size>0.5 10.0 4.0</size>
-            </box>
-          </geometry>
-          <material>
-            <ambient>0 0 1 1</ambient>
-          </material>
-        </visual>
-        <collision name="collision">
-          <geometry>
-            <box>
-              <size>0.5 10.0 4.0</size>
-            </box>
-          </geometry>
-        </collision>
-      </link>
-    </model>
+    <xacro:wall name="wall_top"
+      pose="0.75 4.75 0 0 0 1.5708"
+      length="15.5" />
 
-
-    <!-- Origin Marker -->
-
-    <model name="Origin">
-      <static>true</static>
-      <pose>0 0 0 0 0 0</pose>
-      <link name="link">
-        <visual name="sphere">
-          <geometry>
-            <sphere>
-              <radius>0.3</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0 0 1</diffuse>
-          </material>
-        </visual>
-      </link>
-    </model>
+    <!-- Inner Wall - Starting point -->
+    <xacro:wall name="wall_1"
+      pose="-3.5 -3+0.5 0 0 0 1.5708"
+      length="7.0" />
+    
+    <xacro:wall name="wall_2"
+      pose="4 -3 0 0 0 0"
+      length="7.5" />
+      
+    <xacro:wall name="wall_3"
+      pose="0.5 0.5 0 0 0 1.5708"
+      length="7.0" />
 
 
     <!-- === Start & Goal markers === -->
-
-    <model name="Start">
-      <static>true</static>
-      <pose>-4 -4 2 0 0 0</pose>
-      <link name="link">
-
-        <!-- Sphere part (head of the pin) -->
-        <visual name="pin_head">
-          <pose>0 0 0.4 0 0 0</pose>
-          <geometry>
-            <sphere>
-              <radius>0.3</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>0 0 1 1</ambient>
-            <diffuse>0 0 1 1</diffuse>
-          </material>
-        </visual>
-
-        <!-- Cone part (tip of the pin) -->
-        <visual name="pin_tip">
-          <pose>0 0 -0.2 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>stl/cone.stl</uri>
-              <!-- optional: adjust mesh scaling if you want a larger/smaller cone -->
-              <!-- <scale>1 1 1</scale> -->
-            </mesh>
-          </geometry>
-          <material>
-            <ambient>0 0 1 1</ambient>
-            <diffuse>0 0 1 1</diffuse>
-          </material>
-        </visual>
-
-      </link>
-    </model>
-
-
-    <model name="Goal">
-      <static>true</static>
-      <pose>-4 4 2 0 0 0</pose>
-      <link name="link">
-
-        <!-- Sphere part (head of the pin) -->
-        <visual name="pin_head">
-          <pose>0 0 0.4 0 0 0</pose>
-          <geometry>
-            <sphere>
-              <radius>0.3</radius>
-            </sphere>
-          </geometry>
-          <material>
-            <ambient>0 1 0 1</ambient>
-            <diffuse>0 1 0 1</diffuse>
-          </material>
-        </visual>
-
-        <!-- Cone part (tip of the pin) -->
-        <visual name="pin_tip">
-          <pose>0 0 -0.2 0 0 0</pose>
-          <geometry>
-            <mesh>
-              <uri>stl/cone.stl</uri>
-              <!-- optional: adjust mesh scaling if you want a larger/smaller cone -->
-              <!-- <scale>1 1 1</scale> -->
-            </mesh>
-          </geometry>
-          <material>
-            <ambient>0 1 0 1</ambient>
-            <diffuse>0 1 0 1</diffuse>
-          </material>
-        </visual>
-
-      </link>
-    </model>
+    <xacro:location_pin name="Start" pose="-5 -5 2 0 0 0" color="1 0 0 1" />
+    <xacro:location_pin name="Goal" pose="6.5 -5 2 0 0 0" color="0 1 0 1" />
 
 
     <!-- Vehicle Model -->
     <model name='vehicle_blue' canonical_link='chassis'>
-      <pose relative_to='world'>-4 -4 0 0 0 0</pose>
+      <pose relative_to='world'>-5 -5 0 0 0 0</pose>
       <link name='chassis'>
         <pose relative_to='__model__'>0.5 0 0.4 0 0 0</pose>
         <inertial> <!--inertial
@@ -503,4 +345,4 @@
     </model>
 
   </world>
-</sdf>
+</xacro:sdf>
