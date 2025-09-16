@@ -61,26 +61,38 @@
 
     <!-- Outer boundary -->
     <xacro:wall name="wall_bottom"
-      pose="0 -7 0 0 0 1.5708"
-      length="14.0" />
+      pose="0.75 -7 0 0 0 1.5708"
+      length="15.5" />
 
     <xacro:wall name="wall_left"
-      pose="-7 0 0 0 0 0"
-      length="14.5" />
+      pose="-7 -1.125 0 0 0 0"
+      length="12.25" />
 
     <xacro:wall name="wall_right"
-      pose="7 0 0 0 0 0"
-      length="14.5" />
+      pose="8.5 -1.125 0 0 0 0"
+      length="12.25" />
 
     <xacro:wall name="wall_top"
-      pose="0 7 0 0 0 1.5708"
-      length="14.0" />
+      pose="0.75 4.75 0 0 0 1.5708"
+      length="15.5" />
 
+    <!-- Inner Wall - Starting point -->
+    <xacro:wall name="wall_1"
+      pose="-3.5 -3+0.5 0 0 0 1.5708"
+      length="7.0" />
+    
+    <xacro:wall name="wall_2"
+      pose="4 -3 0 0 0 0"
+      length="7.5" />
+      
+    <xacro:wall name="wall_3"
+      pose="0.5 0.5 0 0 0 1.5708"
+      length="7.0" />
 
 
     <!-- === Start & Goal markers === -->
-    <xacro:location_pin name="Start" pose="-5 -5 2 0 0 0" color="0 0 1 1" />
-    <xacro:location_pin name="Goal" pose="-5 5 2 0 0 0" color="0 1 0 1" />
+    <xacro:location_pin name="Start" pose="-5 -5 2 0 0 0" color="1 0 0 1" />
+    <xacro:location_pin name="Goal" pose="6.5 -5 2 0 0 0" color="0 1 0 1" />
 
 
     <!-- Vehicle Model -->
