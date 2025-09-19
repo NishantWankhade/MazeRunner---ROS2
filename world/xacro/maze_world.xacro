@@ -19,7 +19,7 @@
     </plugin>
 
     <!-- Custom GUI for Video Recording -->
-    <gui fullscreen="1">
+    <gui fullscreen="0">
 
       <!-- 3D scene -->
       <plugin filename="MinimalScene" name="3D View">
@@ -33,7 +33,7 @@
         <scene>scene</scene>
         <ambient_light>0.4 0.4 0.4</ambient_light>
         <background_color>0.8 0.8 0.8</background_color>
- 
+
         <!-- Camera Pose for scene -->
         <camera_pose>-18 0 20 0 0.8 0</camera_pose>
       </plugin>
@@ -290,7 +290,9 @@
       pose="0.5 0.5 0 0 0 1.5708"
       length="7.0" />
 
-    
+    <xacro:wall name="wall_4"
+      pose="0.75 -1.125 2 0 1.5708 0"
+      length="12.25" wall_height="16" />
 
 
     <!-- === Start & Goal markers === -->

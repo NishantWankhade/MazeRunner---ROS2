@@ -2,12 +2,15 @@
 <xacro:sdf version="1.10" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- ===== Global wall properties ===== -->
-  <xacro:property name="wall_height" value="4.0"/>
-  <xacro:property name="wall_thickness" value="0.5"/>
-  <xacro:property name="wall_color" value="0 0 1 1"/>
+
+  <!-- <xacro:property name="wall_height" value="4.0" /> -->
+   
+  <xacro:property name="wall_thickness" value="0.5" />
+  <xacro:property name="wall_color" value="0 0 1 1" />
 
   <!-- ===== Macro for a wall ===== -->
-  <xacro:macro name="wall" params="name pose length">
+  <xacro:macro name="wall" params="name pose length wall_height:=4.0">
+
     <model name="${name}">
       <static>true</static>
       <pose>${pose}</pose>

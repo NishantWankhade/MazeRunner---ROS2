@@ -7,6 +7,8 @@
   <!-- ========== Instances ========== -->
   <!-- <xacro:location_pin name="Start" pose="-4 -4 2 0 0 0" color="0 0 1 1"/>
   <xacro:location_pin name="Goal"  pose="-4  4 2 0 0 0" color="0 1 0 1"/> -->
+  <!-- ===== Global wall properties ===== -->
+  <!-- <xacro:property name="wall_height" value="4.0" /> -->
   <world name="maze_world">
     <!-- Physics & plugins -->
     <physics name="1ms" type="ignored">
@@ -19,7 +21,7 @@
       <state_hertz>25</state_hertz>
     </plugin>
     <!-- Custom GUI for Video Recording -->
-    <gui fullscreen="1">
+    <gui fullscreen="0">
       <!-- 3D scene -->
       <plugin filename="MinimalScene" name="3D View">
         <gz-gui>
@@ -426,6 +428,33 @@
           <geometry>
             <box>
               <size>0.5 7.0 4.0</size>
+            </box>
+          </geometry>
+        </collision>
+      </link>
+    </model>
+    <model name="wall_4">
+      <static>true</static>
+      <pose>0.75 -1.125 2 0 1.5708 0</pose>
+      <link name="link">
+        <!-- Visual -->
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.5 12.25 16</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0 0 1 1</ambient>
+            <diffuse>0 0 1 1</diffuse>
+            <specular>0.2 0.2 0.2 1</specular>
+          </material>
+        </visual>
+        <!-- Collision -->
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.5 12.25 16</size>
             </box>
           </geometry>
         </collision>
