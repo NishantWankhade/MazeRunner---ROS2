@@ -19,7 +19,7 @@
     </plugin>
 
     <!-- Custom GUI for Video Recording -->
-    <gui fullscreen="0">
+    <gui fullscreen="1">
 
       <!-- 3D scene -->
       <plugin filename="MinimalScene" name="3D View">
@@ -35,7 +35,7 @@
         <background_color>0.8 0.8 0.8</background_color>
  
         <!-- Camera Pose for scene -->
-        <camera_pose>-12 0 20 0 0.8 0</camera_pose>
+        <camera_pose>-18 0 20 0 0.8 0</camera_pose>
       </plugin>
 
       <!-- Plugins that add functionality to the scene -->
@@ -262,12 +262,12 @@
 
     <!-- Outer boundary -->
     <xacro:wall name="wall_bottom"
-      pose="0.75 -7 0 0 0 1.5708"
-      length="15.5" />
+      pose="-2.5   -7 0 0 0 1.5708"
+      length="13" />
 
     <xacro:wall name="wall_left"
-      pose="-7 -1.125 0 0 0 0"
-      length="12.25" />
+      pose="-7 0.875 0 0 0 0"
+      length="8.25" />
 
     <xacro:wall name="wall_right"
       pose="8.5 -1.125 0 0 0 0"
@@ -279,8 +279,8 @@
 
     <!-- Inner Wall - Starting point -->
     <xacro:wall name="wall_1"
-      pose="-3.5 -3+0.5 0 0 0 1.5708"
-      length="7.0" />
+      pose="-4.5 -3+0.5 0 0 0 1.5708"
+      length="9.0" />
 
     <xacro:wall name="wall_2"
       pose="4 -3 0 0 0 0"
@@ -290,15 +290,17 @@
       pose="0.5 0.5 0 0 0 1.5708"
       length="7.0" />
 
+    
+
 
     <!-- === Start & Goal markers === -->
-    <xacro:location_pin name="Start" pose="-5 -5 2 0 0 0" color="1 0 0 1" />
-    <xacro:location_pin name="Goal" pose="6.5 -5 2 0 0 0" color="0 1 0 1" />
+    <xacro:location_pin name="Start" pose="-11 -5 2 0 0 0" color="1 0 0 1" />
+    <xacro:location_pin name="Goal" pose="6.5 -8 2 0 0 0" color="0 1 0 1" />
 
 
     <!-- Vehicle Model -->
     <model name='vehicle_blue' canonical_link='chassis'>
-      <pose relative_to='world'>-5 -5 0 0 0 0</pose>
+      <pose relative_to='world'>-11 -5 0 0 0 0</pose>
       <link name='chassis'>
         <pose relative_to='__model__'>0.5 0 0.4 0 0 0</pose>
         <inertial> <!--inertial
