@@ -3,7 +3,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import PathJoinSubstitution
+from launch.substitutions import  Command, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
 
 
@@ -11,6 +11,8 @@ def generate_launch_description():
     ros_gz_sim_pkg_path = get_package_share_directory('ros_gz_sim')
     example_pkg_path = FindPackageShare('minor')  # Replace with your own package name
     gz_launch_path = PathJoinSubstitution([ros_gz_sim_pkg_path, 'launch', 'gz_sim.launch.py'])
+
+    xacro_file = PathJoinSubstitution([example_pkg_path, 'world/xacro/robot.urdf.xacro'])
 
     return LaunchDescription([
         SetEnvironmentVariable(
@@ -29,9 +31,20 @@ def generate_launch_description():
         Node(
             package='ros_gz_bridge',
             executable='parameter_bridge',
-            arguments=['/lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',],
+            arguments=[
+                '/lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+                '/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+                ],
             remappings=[('/lidar',
                          '/laser_scan'),],
             output='screen'
         ),
+
+        Node(
+            package="tf2_ros",
+            executable="static_transform_publisher",
+            name="lidar_tf",
+            arguments=["0", "0", "0", "0", "0", "0", "map", "vehicle_blue/chassis/gpu_lidar"]
+        ),
+
     ])
