@@ -5,6 +5,7 @@ from launch.actions import SetEnvironmentVariable, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import  Command, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
+import os
 
 
 def generate_launch_description():
@@ -12,7 +13,16 @@ def generate_launch_description():
     example_pkg_path = FindPackageShare('minor')  # Replace with your own package name
     gz_launch_path = PathJoinSubstitution([ros_gz_sim_pkg_path, 'launch', 'gz_sim.launch.py'])
 
-    xacro_file = PathJoinSubstitution([example_pkg_path, 'world/xacro/robot.urdf.xacro'])
+    config_file_path = os.path.join(get_package_share_directory('minor'), 'rviz', 'config_file.rviz')
+    
+    rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=["-d", config_file_path],
+        output='screen'
+    )
+
 
     return LaunchDescription([
         SetEnvironmentVariable(
@@ -40,11 +50,16 @@ def generate_launch_description():
             output='screen'
         ),
 
+        # Lidar transform to Rviz coordinate frame
         Node(
             package="tf2_ros",
             executable="static_transform_publisher",
             name="lidar_tf",
             arguments=["0", "0", "0", "0", "0", "0", "map", "vehicle_blue/chassis/gpu_lidar"]
         ),
+
+
+        # Rviz Visualization
+        rviz_node,
 
     ])

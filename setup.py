@@ -18,6 +18,9 @@ setup(
         ('share/' + package_name + '/world', glob('world/*.sdf')),
         ('share/' + package_name + '/world/stl', glob('world/stl/*.stl')),
 
+        # Rviz Launch file
+        ('share/' + package_name + '/rviz', glob('rviz/*.rviz')),
+
         # Adding Launch file as an executable 
         (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*launch.[pxy][yma]*')))
     ],
